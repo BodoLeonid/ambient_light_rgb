@@ -6,11 +6,10 @@
 
 ## Функциональность
 
-- Анализ цвета экрана с частотой до 30 кадров в секунду
+- Анализ цвета экрана с необходимой частотой в секунду
 - Определение доминирующего цвета с фильтрацией шумов
 - Плавные переходы между цветами
 - Поддержка Bluetooth Low Energy устройств
-- Кроссплатформенность (Windows, macOS, Linux)
 
 ## Структура проекта
 
@@ -35,17 +34,6 @@ screen_color_tracker/
 
 ```bash
 pip install -r requirements.txt
-```
-
-#### Дополнительно для macOS:
-```bash
-pip install bleak[macos]
-pip install pyobjc-core pyobjc-framework-Cocoa
-```
-
-#### Для Linux (Ubuntu/Debian):
-```bash
-sudo apt-get install python3-dev python3-pip libbluetooth-dev
 ```
 
 ## Настройка
@@ -146,8 +134,3 @@ TRANSITION_STEPS = 5   # Уменьшить количество шагов пе
 
 - Приложение работает локально
 - Не передает данные в интернет
-- Требует явного разрешения на доступ к экрану
-
-## Лицензия
-
-MIT License
