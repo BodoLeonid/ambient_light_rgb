@@ -11,7 +11,7 @@ class BLEClient:
         self.is_connected = False
 
     async def connect(self):
-        """Подключение к BLE устройству"""
+        """Подключение к устройству"""
         try:
             self.client = BleakClient(config.DEVICE_ADDRESS)
             await self.client.connect()
@@ -27,7 +27,7 @@ class BLEClient:
         if self.client and self.is_connected:
             await self.client.disconnect()
             self.is_connected = False
-            print("Отключено от BLE устройства")
+            print("Отключено от устройства")
 
     async def send_color_command(self, color):
         """Отправка на устройство"""

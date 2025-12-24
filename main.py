@@ -14,10 +14,9 @@ async def main():
     color_processor = ColorProcessor()
     ble_client = BLEClient(color_processor)
 
+    # Подключение к устройству
     try:
-        # Подключение к устройству
         if await ble_client.connect():
-            # Запуск потока цветов
             await ble_client.run_color_stream()
 
     except KeyboardInterrupt:

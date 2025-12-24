@@ -13,7 +13,7 @@ def color_distance(c1, c2):
 
 
 def generate_color_transition(start_color, end_color, steps):
-    """Генерация промежуточных цветов для плавного перехода"""
+    """Промежуточные цвета для плавного перехода"""
     if start_color is None:
         return [end_color]
 

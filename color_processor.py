@@ -52,7 +52,7 @@ class ColorProcessor:
             return (128, 128, 128)
 
     def _enhance_color(self, color):
-        """Улучшает насыщенность и яркость цвета"""
+        """Улучшение цвета"""
         r, g, b = color
         h, s, v = rgb_to_hsv(r / 255, g / 255, b / 255)
         s = min(s * 1.2, 1.0)
