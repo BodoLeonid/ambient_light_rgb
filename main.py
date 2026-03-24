@@ -7,13 +7,9 @@ from ble_client import BLEClient
 async def main():
     print("Запуск отслеживания цветов...")
 
-    # event loop для macOS
-    # if platform.system() == "Darwin":
-    #     asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
-
     color_processor = ColorProcessor()
     ble_client = BLEClient(color_processor)
- 
+
     # Подключение к устройству
     try:
         if await ble_client.connect():

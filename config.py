@@ -8,9 +8,9 @@ MIN_SATURATION = 0.2
 DOWNSCALE_COLOR_FACTOR = 8
 
 # Параметры переходов
-COLOR_CHANGE_THRESHOLD = 30  # Порог изменения цвета для начала перехода
-TRANSITION_STEPS = 10  # Количество шагов перехода между цветами
-TRANSITION_DELAY = 0.005  # Задержка между шагами перехода /cек
+COLOR_CHANGE_THRESHOLD = 15  # Порог изменения цвета для начала перехода
+TRANSITION_STEPS = 15  # Количество шагов перехода между цветами
+TRANSITION_DELAY = 0.001  # Задержка между шагами перехода /cек
 
 # Включить/выключить улучшение цвета
 ENHANCE_COLOR = False  # Поставьте True, если нужно улучшение цвета

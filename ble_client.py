@@ -50,10 +50,7 @@ class BLEClient:
                     last_color = new_color
                     await self.send_color_command(new_color)
                 else:
-                    if (
-                        utils.color_distance(new_color, last_color)
-                        >= config.COLOR_CHANGE_THRESHOLD
-                    ):
+                    if (utils.color_distance(new_color, last_color) >= config.COLOR_CHANGE_THRESHOLD):
                         transition_colors = utils.generate_color_transition(
                             last_color, new_color, config.TRANSITION_STEPS
                         )

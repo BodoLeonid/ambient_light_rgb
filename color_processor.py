@@ -1,6 +1,7 @@
 import numpy as np
 from PIL import Image, ImageGrab
 from colorsys import rgb_to_hsv, hsv_to_rgb
+from collections import defaultdict
 import pyautogui
 import config
 import utils
@@ -34,17 +35,31 @@ class ColorProcessor:
             ]
 
             if not filtered_pixels:
-                # return (128, 128, 128)  # Серый по умолчанию
-                return (0, 0, 0)  # Серый по умолчанию
+                return (0, 0, 0)
 
-            median_color = np.median(filtered_pixels, axis=0).astype(int)
-            dominant_color = (
-                int(median_color[0]),
-                int(median_color[1]),
-                int(median_color[2]),
-            )
+            pixels_per_color = defaultdict(list)
+            pixels_per_color_count = defaultdict(int)
+            dominant_hue = (0, 0)  # (count, hue)
+            for pixel in filtered_pixels:
+                h, s, v = rgb_to_hsv(pixel[0] / 255, pixel[1] / 255, pixel[2] / 255)
+                h = round(h, 2)
+                pixels_per_color[h].append((s, v))
+                pixels_per_color_count[h] += 1
+                temp_count = pixels_per_color_count[h]
+                if dominant_hue[0] < temp_count:
+                    dominant_hue = (temp_count, h)
 
-            # Коррекция цвета
+            target_list = pixels_per_color[dominant_hue[1]]
+            if target_list:
+                median_sv = np.median(target_list, axis=0)
+                h = dominant_hue[1]
+                s = float(median_sv[0])
+                v = float(median_sv[1])
+                r, g, b = hsv_to_rgb(h, s, v)
+                dominant_color = (int(r * 255), int(g * 255), int(b * 255))
+            else:
+                dominant_color = (0, 0, 0)
+
             dominant_color = self._enhance_color(dominant_color)
             return dominant_color
 
@@ -56,8 +71,8 @@ class ColorProcessor:
         """Улучшение цвета"""
         r, g, b = color
         return (r, g, b)
-        h, s, v = rgb_to_hsv(r / 255, g / 255, b / 255)
-        s = min(s * 1.0, 1.0)
-        v = min(v * 1.2, 1.0)
-        r, g, b = hsv_to_rgb(h, s, v)
-        return (int(r * 255), int(g * 255), int(b * 255))
+        # h, s, v = rgb_to_hsv(r / 255, g / 255, b / 255)
+        # s = min(s * 1.0, 1.0)
+        # v = min(v * 1.2, 1.0)
+        # r, g, b = hsv_to_rgb(h, s, v)
+        # return (int(r * 255), int(g * 255), int(b * 255))
