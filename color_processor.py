@@ -34,7 +34,8 @@ class ColorProcessor:
             ]
 
             if not filtered_pixels:
-                return (128, 128, 128)  # Серый по умолчанию
+                # return (128, 128, 128)  # Серый по умолчанию
+                return (0, 0, 0)  # Серый по умолчанию
 
             median_color = np.median(filtered_pixels, axis=0).astype(int)
             dominant_color = (
@@ -54,8 +55,9 @@ class ColorProcessor:
     def _enhance_color(self, color):
         """Улучшение цвета"""
         r, g, b = color
+        return (r, g, b)
         h, s, v = rgb_to_hsv(r / 255, g / 255, b / 255)
-        s = min(s * 1.2, 1.0)
-        v = min(v * 1.5, 1.0)
+        s = min(s * 1.0, 1.0)
+        v = min(v * 1.2, 1.0)
         r, g, b = hsv_to_rgb(h, s, v)
         return (int(r * 255), int(g * 255), int(b * 255))
