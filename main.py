@@ -18,7 +18,6 @@ async def main():
         print("\nПрограмма остановлена пользователем")
     finally:
         await ble_client.disconnect()
-        color_processor.cleanup()
 
 
 if __name__ == "__main__":
