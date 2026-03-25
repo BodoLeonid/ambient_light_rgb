@@ -10,8 +10,8 @@ DOWNSCALE_COLOR_FACTOR = 8
 # Параметры переходов
 COLOR_CHANGE_THRESHOLD = 15
 TRANSITION_STEPS = 15  # Меньше шагов = быстрее
-TRANSITION_DELAY = 0.0005  # Еще меньше задержка
-POLL_DELAY = 0.05  # Минимум 50мс между опросами
+TRANSITION_DELAY = 0.0001  # Еще меньше задержка
+POLL_DELAY = 0.1  # Минимум 50мс между опросами
 SKIP_FRAMES = 2  # Пропускаем каждый N-й кадр для анализа
 
 # Включить/выключить улучшение цвета
